@@ -6,7 +6,7 @@ import { DropArea } from "./dropArea"
 
 export const List = () => {
    return (
-      <div className="list w-[270px] min-w-[270px]  bg-gray-100 shadow-4xl p-1 rounded-xl text-sm transition-all"
+      <div className="w-[270px] min-w-[270px]  bg-gray-100 shadow-4xl p-1 rounded-xl text-sm transition-all"
          // onDragStart={(e) => { dragDrop.dragStart(e) }}
          onDragEnter={(e) => { }}
          onDragOver={(e) => { }}
@@ -18,5 +18,4 @@ export const List = () => {
          <NewCardForm />
       </div>
    )
-   ////CRIANDO DROR-AREA
 }
