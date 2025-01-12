@@ -1,15 +1,16 @@
-export const Cover = ({ cardInfos }) => {
+export const Cover = ({ cover }) => {
    return (
       <>
-         {(cardInfos.capa.img) &&
+         {(cover.img) &&
             <div className="h-36 overflow-hidden rounded-t-sm -m-1">
-               <img className="w-full h-full object-cover" draggable="false" src={cardInfos.capa.img}></img>
+               <img className="w-full h-full object-cover" draggable="false" src={cover.img}></img>
             </div>
          }
-         {(cardInfos.capa.color && !cardInfos.capa.full) &&
+         {(cover.color && !cover.full) &&
             <div className="h-12 overflow-hidden rounded-t-sm -m-1">
-               <div className="h-full w-full" style={{ backgroundColor: cardInfos.capa.color }}></div>
+               <div className="h-full w-full" style={{ backgroundColor: cover.color }}></div>
             </div>
-         }</>
+         }
+      </>
    )
 }
