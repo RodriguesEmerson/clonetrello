@@ -1,4 +1,5 @@
 export const Coments = ({ coments }) => {
+   if(!!!coments) return <></>;
    return (
       <>
          {coments.length > 0 &&

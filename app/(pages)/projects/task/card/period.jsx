@@ -1,39 +1,43 @@
-export const Period = ({ periodo, cardInfos, setCardInfos }) => {
-   // const { datesHandler } = useDateHandler();
-   if(!periodo.inicio && !periodo.fim) return <></>;
+import { useState } from "react";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+
+export const Period = ({ period }) => {
+   if (!period.start && !period.end) return <></>;
+
+   const startDate = new Date(period.start).toLocaleDateString('pt-br', { day: '2-digit', month: 'short' });
+   const endDate = new Date(period.end).toLocaleDateString('pt-br', { day: '2-digit', month: 'short' });
 
    const [hovering, setHovering] = useState(false);
-   function handleMouseOut(e){
+   function handleMouseOut(e) {
       // Verifica se o cursor realmente saiu do elemento pai e não apenas foi para um filho.
-      if(!e.currentTarget.contains(e.relatedTarget)){
+      if (!e.currentTarget.contains(e.relatedTarget)) {
          setHovering(false)
-      } 
+      }
    }
-
-   const dataInicio = new Date(periodo.inicio).toLocaleDateString('pt-br', { day: '2-digit', month: 'short' });
-   const dataFim = new Date(periodo.fim).toLocaleDateString('pt-br', { day: '2-digit', month: 'short' });
 
    return (
       <div
-         className={`card_periodo h-6 flex flex-row items-center gap-1 p-1 rounded-[3px] `}
-         onMouseEnter={(e)=> setHovering(true)}
-         onMouseOut={(e)=> handleMouseOut(e)}
-         // onClick={(e)=> datesHandler.toggleStatus(periodo, cardInfos, setCardInfos)}
+         className={`h-6 flex flex-row items-center gap-1 p-1 rounded-[3px] `}
+         onMouseEnter={(e) => setHovering(true)}
+         onMouseOut={(e) => handleMouseOut(e)}
+      // onClick={(e)=> datesHandler.toggleStatus(period, cardInfos, setCardInfos)}
       >
-         <span
-            className={`material-icons-outlined !text-lg scale-90 -mt-[3px]`}
-         >
-           {!hovering 
-               ? 'schedule' 
-               : periodo.status ? 'check_box' : 'check_box_outline_blank'
-            } 
-         </span>
+         {!hovering &&
+            <AccessTimeIcon className="text-base" />
+         }
+         {hovering && (
+            period.done
+               ? <CheckBoxIcon className="text-base text-green-700" />
+               : <CheckBoxOutlineBlankIcon className="text-base hover:text-green-700" />
+         )}
          <p>
-            {periodo.inicio && periodo.fim 
-               ? `${dataInicio} - ${dataFim}` 
-               : periodo.inicio && !periodo.fim 
-                  ? `Começou: ${dataInicio}` 
-                  :  !periodo.inicio && periodo.fim && (dataFim)
+            {period.start && period.end
+               ? `${startDate} - ${endDate}`
+               : period.start && !period.end
+                  ? `Começou: ${startDate}`
+                  : !period.start && period.end && (endDate)
             }
          </p>
       </div>

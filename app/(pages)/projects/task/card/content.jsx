@@ -1,17 +1,21 @@
+import { useEditingCardStore } from "./../zustand/useEditingCardStore"
 
 export const Content = ({ content }) => {
-   const isEditingCard = false;
+
+   const editingCard = useEditingCardStore(state => state.editingCard);
+   const isEditingCard = !editingCard;
+
    return (
       <div className="min-h-8 flex items-center">
-         {!isEditingCard
+         {isEditingCard
             ? <p className="max-w-full break-words">{content}</p>
             : <textarea
                name="content"
-               className="p-1 w-full outline-none resize-none" f
+               className="p-1 w-full outline-none resize-none" 
                placeholder="Insira um texto"
+               aria-label="Campo de texto para editar o conteúdo"
                autoFocus
-               onChange={(e) => { }}
-               onKeyDown={(e) => { e.code == "Enter" && {} }}
+               defaultValue={editingCard.content}
             // onKeyDown={(e)=>console.log(e.code == "Enter") }
             >
             </textarea>
