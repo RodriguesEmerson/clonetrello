@@ -12,5 +12,8 @@ export const useEditingCardStore = create((set) => ({
    ),
    setEditingCardPosition: (position) => set(
       {editingCardPosition: position}
+   ),
+   editCard: (atributte, value) => set((state) => 
+      ({ ...state.card, [atributte]: value })
    )
 }))
