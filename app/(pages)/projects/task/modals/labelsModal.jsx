@@ -1,8 +1,11 @@
-import { labelsHandler } from "@/app/logica/logica-modais/editar-labels";
-import { modalInfos } from "@/app/logica/logica-modais/main";
+'use client';
+
 import { useEffect, useState } from "react";
-import { useProvidersContext } from "../../context/providers";
 import ModalBox from "./boxModal";
+import { useEditingCardStore } from "../zustand/useEditingCardStore";
+import { hiddenModalsStore } from "../zustand/hiddenModalsStore";
+import { useLabelsHandler } from "./hooks/useLabelsHandler"
+
 
 const labelsList = [
    { color: '#FFC636' },
@@ -14,21 +17,18 @@ const labelsList = [
    { color: '#7C05F2' },
 ]
 
-//316
+export const LabelsModal = () => {
 
-export default function LabelsModal() {
-   const {
-      setHiddenLabelsModal,
-   } = useProvidersContext();
+   const editingCard = useEditingCardStore(state => state.editingCard);
+   const isHidden = hiddenModalsStore(state => state.isHidden);
+   
 
-   const cardInfos = modalInfos.getCardInfos();
-
+   if(isHidden.labels) return <></>;
    return (
-      <ModalBox modalName={'Etiquetas'} setHiddenModal={setHiddenLabelsModal}>
-     
+      <ModalBox modalName={'Etiquetas'}>
          <ul className="flex flex-col gap-[6px]  p-1">
             {labelsList.map(label => (
-               <Label label={label} editingLabels={cardInfos.labels} key={label.color} />
+               <Label label={label} editingLabels={editingCard.labels} key={label.color} />
             ))}
          </ul>
       </ModalBox>
@@ -37,6 +37,8 @@ export default function LabelsModal() {
 
 function Label({ label, editingLabels }) {
    const [checked, setChecked] = useState(false);
+   const { labelsHandler } = useLabelsHandler();
+
    useEffect(() => {
       editingLabels.includes(label.color) && setChecked(true);
    }, []);
@@ -45,7 +47,7 @@ function Label({ label, editingLabels }) {
       <li className="flex gap-2 w-full" key={label.color}>
          <input className="w-[18px]" type="checkbox" id={`check${label.color}`}
             checked={checked} //Verifica se há alguma cor selecionada, se sim, seta checcked;
-            onChange={() => { labelsHandler.setLabels(label.color); setChecked(!checked) }}
+            onChange={() => { labelsHandler(label.color); setChecked(!checked) }}
          />
          <label
             className={"w-full block"}

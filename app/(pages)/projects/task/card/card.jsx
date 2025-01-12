@@ -11,10 +11,11 @@ import { useCardHandler } from "./hooks/useCardHandler"
 import { useRef } from 'react';
 
 export const Card = () => {
+   const card = cardStore(state => state.card);
+   
    const setEditingCard = useEditingCardStore(state => state.setEditingCard);
    const setIsEditingCard = useEditingCardStore(state => state.setIsEditingCard);
    const isEditingCard = useEditingCardStore(state => state.isEditingCard);
-   const card = cardStore(state => state.card);
    const cardRef = useRef(null);
    const { setCardPosition } = useCardHandler();
 

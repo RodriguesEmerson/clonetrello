@@ -13,11 +13,12 @@ import Inventory2Icon from '@mui/icons-material/Inventory2';
 
 import { useEditingCardStore } from "./../zustand/useEditingCardStore"
 import { BgModal } from "./bgModal"
-
+import { hiddenModalsStore } from "../zustand/hiddenModalsStore";
 
 export const MenuModal = () => {
    const editingCardPosition = useEditingCardStore(state => state.editingCardPosition);
    const isEditingCard = useEditingCardStore(state => state.isEditingCard);
+   const setShowModal = hiddenModalsStore(state => state.setShowModal);
 
    const modalRef = useRef(null);
    let top = editingCardPosition.top;
@@ -38,7 +39,7 @@ export const MenuModal = () => {
       
       <BgModal>
          <div
-            className="modal absolute z-10"
+            className="modal absolute"
             style={{top: `${editingCardPosition.top}px`, left: `${editingCardPosition.left}px`}}
             ref={modalRef}
          >
@@ -50,7 +51,9 @@ export const MenuModal = () => {
                   </MenuModalButton>
                </li>
                <li>
-                  <MenuModalButton>
+                  <MenuModalButton
+                     onClick={()=> setShowModal("labels", false)}
+                  >
                      <SellIcon className="text-base"/>
                      <p>Editar Etiquetas</p>
                   </MenuModalButton>
