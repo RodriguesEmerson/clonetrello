@@ -29,7 +29,7 @@ export const MenuModal = () => {
          const modalHeight = modalRef.current.offsetHeight;
          const windowHeight = window.innerHeight - 10;
          if (modalHeight + top > windowHeight) { top = top - (modalHeight + top - windowHeight + 2) };
-         setPosition({...position, top: top});
+         // setPosition({...position, top: top});
       }
    },[])
 
@@ -59,7 +59,9 @@ export const MenuModal = () => {
                   </MenuModalButton>
                </li>
                <li>
-                  <MenuModalButton>
+                  <MenuModalButton
+                      onClick={()=> setShowModal("members", false)}
+                  >
                      <PersonIcon className="text-base"/>
                      <p>Alterar Membros</p>
                   </MenuModalButton>

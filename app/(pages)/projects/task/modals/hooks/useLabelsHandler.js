@@ -1,6 +1,5 @@
 import { cardStore } from "../../zustand/cardStore";
 
-
 export const useLabelsHandler = () => {
    const card = cardStore(state => state.card);
    const setCardChanges = cardStore(state => state.setCardChanges);

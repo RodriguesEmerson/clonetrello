@@ -1,13 +1,11 @@
 import { List } from "./list/list"
-import { MenuModal } from "./modals/menuModal";
-import { LabelsModal } from "./modals/labelsModal"
+import { Modals } from "./modals/modals";
 
 const Task = () =>{
    return (
       <div>
          <List />
-         <MenuModal />
-         <LabelsModal />
+         <Modals />
       </div>
    )
 }

@@ -7,7 +7,7 @@ import { Coments } from "./coments";
 import { Period } from "./period";
 import { useEditingCardStore } from "./../zustand/useEditingCardStore";
 import { cardStore } from "./../zustand/cardStore";
-import { useCardHandler } from "./hooks/useCardHandler"
+import { useCardHandler } from "./hooks/useCardHandler";
 import { useRef } from 'react';
 
 export const Card = () => {

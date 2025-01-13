@@ -3,9 +3,7 @@
 import { useEffect, useState } from "react";
 import ModalBox from "./boxModal";
 import { useEditingCardStore } from "../zustand/useEditingCardStore";
-import { hiddenModalsStore } from "../zustand/hiddenModalsStore";
 import { useLabelsHandler } from "./hooks/useLabelsHandler"
-
 
 const labelsList = [
    { color: '#FFC636' },
@@ -18,12 +16,8 @@ const labelsList = [
 ]
 
 export const LabelsModal = () => {
-
    const editingCard = useEditingCardStore(state => state.editingCard);
-   const isHidden = hiddenModalsStore(state => state.isHidden);
    
-
-   if(isHidden.labels) return <></>;
    return (
       <ModalBox modalName={'Etiquetas'}>
          <ul className="flex flex-col gap-[6px]  p-1">
