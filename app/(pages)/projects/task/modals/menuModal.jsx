@@ -67,7 +67,9 @@ export const MenuModal = () => {
                   </MenuModalButton>
                </li>
                <li>
-                  <MenuModalButton>
+               <MenuModalButton
+                      onClick={()=> setShowModal("cover", false)}
+                  >
                      <WebAssetIcon className="text-base"/>
                      <p>Alterar Capa</p>
                   </MenuModalButton>

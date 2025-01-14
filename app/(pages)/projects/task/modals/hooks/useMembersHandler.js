@@ -6,13 +6,13 @@ export const useMembersHandler = () => {
    const setCardChanges = cardStore(state => state.setCardChanges);
    const cardMembers = card.members;
 
-   function removeMember(memberRemoved){
-      const newCardMembers = cardMembers.filter(member => memberRemoved.id != member.id);
-      setCardChanges("members", newCardMembers);
+   function removeMember(removedMember){
+      const updatedMembers = cardMembers.filter(member => removedMember.id != member.id);
+      setCardChanges("members", updatedMembers);
    }
 
-   function addMember(memberAdded){
-      setCardChanges("members",[...card.members, memberAdded]);
+   function addMember(addedMember){
+      setCardChanges("members",[...cardMembers, addedMember]);
    }
 
    function findOutMembers(){
