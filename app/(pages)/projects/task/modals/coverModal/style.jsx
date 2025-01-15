@@ -1,7 +1,7 @@
 import { cardStore } from "../../zustand/cardStore";
 
 
-export const PreviewCover = () => {
+export const Style = () => {
    const card = cardStore(state => state.card);
    const setCardChanges = cardStore(state => state.setCardChanges);
    const cover = card.cover;

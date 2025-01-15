@@ -1,5 +1,5 @@
 import ModalBox from "../boxModal";
-import { PreviewCover } from "./previewColor";
+import { Style } from "./style";
 import { Colors } from "./colors";
 import { Images } from "./images";
 import { cardStore } from "../../zustand/cardStore";
@@ -10,7 +10,7 @@ export function CoverModal() {
    return (
       <ModalBox modalName={'Capa'}>
          <div className="flex flex-col gap-2 p-1">
-            <PreviewCover />
+            <Style />
             <input type="button" value="Remover Capa"
                className="bg-gray-200 text-[13px] font-semibold w-full 
                            rounded-sm h-8 cursor-pointer hover:bg-gray-300 transition-all"

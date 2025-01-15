@@ -9,17 +9,21 @@ import { useEditingCardStore } from "./../zustand/useEditingCardStore";
 import { cardStore } from "./../zustand/cardStore";
 import { useCardHandler } from "./hooks/useCardHandler";
 import { useRef } from 'react';
+import { calendarStore } from '../modals/dateModal/calendar/zustand/calendarStore';
+import { useDateHandler } from '../modals/hooks/useDateHandler';
 
 export const Card = () => {
    const card = cardStore(state => state.card);
+   const { convertDateToOnMothLess, convertDateToOnMothMore } = useDateHandler();
    
    const setEditingCard = useEditingCardStore(state => state.setEditingCard);
    const setIsEditingCard = useEditingCardStore(state => state.setIsEditingCard);
+   const setEditingPeriod = calendarStore(state => state.setEditingPeriod);
    const isEditingCard = useEditingCardStore(state => state.isEditingCard);
    const cardRef = useRef(null);
    const { setCardPosition } = useCardHandler();
 
-   if(!card) return <></>
+   if(!card) return <></>;
 
    return (
       <div
@@ -36,6 +40,11 @@ export const Card = () => {
             className='absolute right-1 top-1 !text-center text-gray-500 !text-lg hover:text-gray-900 transition-all' 
             onClick = {() => {
                setEditingCard(card);
+               setEditingPeriod({
+                  start: convertDateToOnMothLess(card.period.start),
+                  end: convertDateToOnMothLess(card.period.end),
+                  done: card.period.done
+               });
                setIsEditingCard(true);
                setCardPosition(cardRef.current)
             }}

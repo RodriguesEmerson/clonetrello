@@ -6,6 +6,7 @@ import { LabelsModal } from "./labelsModal";
 import { MembersModal } from "./membersModal";
 import { MenuModal } from "./menuModal";
 import { CoverModal } from "./coverModal/coverModal";
+import { DateModal } from "./dateModal/dateModal"
 
 
 export const Modals = () => {
@@ -24,6 +25,9 @@ export const Modals = () => {
       }
       {!isHidden.cover &&
          <CoverModal />
+      }
+      {!isHidden.date &&
+         <DateModal />
       }
       </>
    )
