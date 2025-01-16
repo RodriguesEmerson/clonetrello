@@ -14,7 +14,7 @@ import { useDateHandler } from '../modals/hooks/useDateHandler';
 
 export const Card = () => {
    const card = cardStore(state => state.card);
-   const { convertDateToOnMothLess, convertDateToOnMothMore } = useDateHandler();
+
    
    const setEditingCard = useEditingCardStore(state => state.setEditingCard);
    const setIsEditingCard = useEditingCardStore(state => state.setIsEditingCard);
@@ -40,11 +40,7 @@ export const Card = () => {
             className='absolute right-1 top-1 !text-center text-gray-500 !text-lg hover:text-gray-900 transition-all' 
             onClick = {() => {
                setEditingCard(card);
-               setEditingPeriod({
-                  start: convertDateToOnMothLess(card.period.start),
-                  end: convertDateToOnMothLess(card.period.end),
-                  done: card.period.done
-               });
+               setEditingPeriod(card.period);
                setIsEditingCard(true);
                setCardPosition(cardRef.current)
             }}
