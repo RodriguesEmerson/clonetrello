@@ -1,7 +1,5 @@
 'use client'
 
-import { calendarStore } from "../dateModal/calendar/zustand/calendarStore";
-
 export const useCalendar = () => {
 
    const weekDays = ['Dom', 'Seg', 'Ter', 'Quar', 'Qui', 'Sex', 'Sáb'];
@@ -13,9 +11,9 @@ export const useCalendar = () => {
       return ({ prevMonth: daysNumberInTheLastMonth, currMonth: currentMont, nextMonth: dayNumberNextMonth });
    }
 
-   function getCalendarDays(month, year) {
+   function getCalendarDays(month, year) { 
       //Dia da semana que foi o primeiro dia do mês.
-      const firsWeekDayOfMonth = (new Date(year, month, 1).getDay());
+      const firsWeekDayOfMonth = (new Date(year, month - 1, 1).getDay());
 
       
       //Cria um array com números do 1º dia da semana até o 1º dia do mês.
@@ -27,12 +25,12 @@ export const useCalendar = () => {
       //Cria um array com os ultimos dias do mês anterior que aparecem na mesma semana do 1º dia do mês atual.
       const previousMonthLastDays = [];
       for (let day = firsWeekDayOfMonth - 1; day >= 0; day--) {
-         previousMonthLastDays.push(monthsDays(month, year).prevMonth - day);
+         previousMonthLastDays.push(monthsDays(month - 1, year).prevMonth - day);
       }
 
       //Cria um array com os primerios dias do próximo mês.
       const nextMonthFirstDays = [];
-      const lastWeekDayOfCurrentMonth = new Date(year, month + 1, 0).getDay();
+      const lastWeekDayOfCurrentMonth = new Date(year, month, 0).getDay();
       let day = 1;
       for (let d = lastWeekDayOfCurrentMonth; d < 6; d++) {
          nextMonthFirstDays.push(day);
@@ -41,7 +39,7 @@ export const useCalendar = () => {
 
       //Cria um array com todos os dias do mês selecionado.
       const selectedMonthDays = [];
-      const selectedMonth = new Date(year, month + 1, 0).getDate();
+      const selectedMonth = new Date(year, month, 0).getDate();
       for (let day = 1; day <= selectedMonth; day++) {
          selectedMonthDays.push(day)
       }
@@ -57,11 +55,11 @@ export const useCalendar = () => {
    }
 
    function isDateInAnalyzedPeriod(date, start, end) {
-
+      
       const startDate = new Date(start).getTime();
       const endDate = new Date(end).getTime();
       const analyzedDay = (new Date(date).getTime());
-
+      
       //Checa se dia está dentro do periodo analizado.
       if (analyzedDay >= startDate && analyzedDay <= endDate) return true;
       if (analyzedDay == startDate || analyzedDay == endDate) return true;
@@ -71,16 +69,16 @@ export const useCalendar = () => {
    }
 
    function decrementMonth(selectedMonth) {
-      return (selectedMonth - 1 + 12) % 12;
+      return ((selectedMonth - 2 + 12) % 12) + 1;
    }
    function incrementMonth(selectedMonth) {
-      return (selectedMonth + 1 + 12) % 12;
+      return (selectedMonth % 12 + 1);
    }
    function decrementYear(selectedMonth, selectedYear) {
-      return selectedMonth - 1 < 0 ? selectedYear - 1 : selectedYear;
+      return selectedMonth - 1 < 1 ? selectedYear - 1 : selectedYear;
    }
    function incrementYear(selectedMonth, selectedYear) {
-      return selectedMonth + 1 > 11 ? selectedYear + 1 : selectedYear;
+      return selectedMonth + 1 > 12 ? selectedYear + 1 : selectedYear;
    }
 
 

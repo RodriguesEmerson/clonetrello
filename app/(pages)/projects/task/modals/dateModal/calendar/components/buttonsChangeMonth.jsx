@@ -3,11 +3,6 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useCalendar } from "../../../hooks/useCalendar";
 
-const monthsNames = [
-   'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho',
-   'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-];
-
 export const ButtonsChangeMonth = () => {
    const selectedMonth = calendarStore(state => state.selectedMonth);
    const selectedYear = calendarStore(state => state.selectedYear);
@@ -21,17 +16,17 @@ export const ButtonsChangeMonth = () => {
             className="material-icons h-7 w-7 pt-[2px] text-center hover:bg-gray-200 cursor-pointer rounded"   
             onClick={() => { 
                setSelectedMonth(decrementMonth(selectedMonth)); 
-               setSelectedYear(decrementYear(selectedMonth,selectedYear));
+               setSelectedYear(decrementYear(selectedMonth, selectedYear));
             }}
          />
          <p className="text-xs font-semibold cursor-default">
-            {`${monthsNames[selectedMonth]} de ${selectedYear}`}
+            {`${new Date(`${selectedYear}/${selectedMonth}/1`).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' })}`}
          </p>
          <ChevronRightIcon
             className="material-icons h-7 w-7 pt-[2px] text-center hover:bg-gray-200 cursor-pointer rounded"
             onClick={() => {
                setSelectedMonth(incrementMonth(selectedMonth)); 
-               setSelectedYear(incrementYear(selectedMonth,selectedYear));
+               setSelectedYear(incrementYear(selectedMonth, selectedYear));
             }}
          />
       </div>

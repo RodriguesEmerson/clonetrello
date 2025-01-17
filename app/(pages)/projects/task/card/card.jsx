@@ -15,7 +15,6 @@ import { useDateHandler } from '../modals/hooks/useDateHandler';
 export const Card = () => {
    const card = cardStore(state => state.card);
 
-   
    const setEditingCard = useEditingCardStore(state => state.setEditingCard);
    const setIsEditingCard = useEditingCardStore(state => state.setIsEditingCard);
    const setEditingPeriod = calendarStore(state => state.setEditingPeriod);

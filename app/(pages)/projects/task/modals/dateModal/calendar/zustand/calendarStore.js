@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 export const calendarStore = create((set) => ({
    editingPeriod: {},
-   selectedMonth: 0,
+   selectedMonth: 1,
    selectedYear: 2025,
    setEditingPeriod: (period) => set(() => ({
       editingPeriod: period

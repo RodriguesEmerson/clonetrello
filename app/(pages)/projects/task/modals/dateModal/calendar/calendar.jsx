@@ -49,17 +49,12 @@ export const Calendar = () => {
 }
 
 const CalendarDay = ({ day, month, year, classRest, ...rest }) => {
-   const { convertDateToOnMothLess, convertDateToOnMothMore } = useDateHandler();
    const editingPeriod = calendarStore(state => state.editingPeriod);
    const { isDateInAnalyzedPeriod } = useCalendar();
    return (
       <span
-         className={`h-8 leading-8 rounded-[3px] text-[14px] text-center hover:bg-gray-100 text-gray-500 cursor-pointer border border-white ${(new Date().getDate() == day && month == new Date().getMonth()) && "text-blue-600 font-bold border-b-[3px] border-b-blue-600"}
-           ${(isDateInAnalyzedPeriod(`
-               ${year} / ${month} / ${day}`,
-               convertDateToOnMothLess(editingPeriod.start),
-               convertDateToOnMothLess(editingPeriod.end)
-         ) && "bg-blue-100 hover:!bg-blue-300")} 
+         className={`h-8 leading-8 rounded-[3px] text-[14px] text-center hover:bg-gray-100 text-gray-500 cursor-pointer border border-white ${(new Date().getDate() == day && month == new Date().getMonth() + 1 && year == new Date().getFullYear()) && "text-blue-600 font-bold border-b-[3px] border-b-blue-600"}
+           ${(isDateInAnalyzedPeriod(`${year}/${month}/${day}`, (editingPeriod.start), (editingPeriod.end)) && "bg-blue-100 hover:!bg-blue-300")} 
          `}
          {...rest}
       >{day}</span>
