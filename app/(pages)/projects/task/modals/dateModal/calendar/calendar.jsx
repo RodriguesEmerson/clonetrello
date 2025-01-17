@@ -2,7 +2,7 @@
 import { useCalendar } from "../../hooks/useCalendar";
 import { useDateHandler } from "../../hooks/useDateHandler";
 import { ButtonsChangeMonth } from "./components/buttonsChangeMonth";
-import { WeekDaysTitle } from "./weekDaysTitle";
+import { WeekDaysTitle } from "./components/weekDaysTitle";
 import { calendarStore } from "./zustand/calendarStore";
 
 export const Calendar = () => {
