@@ -40,7 +40,6 @@ export const useDateHandler = () => {
 
    function addPeriodDate(date, type, changeType) {
       if (isValidDate(date)) {
-         
          // If the start date is greater than the end date, the start date is set to date and the end date is set to false.
          if(isGreaterThan(date, editingPeriod.end) && insertDateType === "start"){
             setEditingPeriod({ ...editingPeriod, start: date, end: false });

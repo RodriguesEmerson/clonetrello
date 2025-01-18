@@ -10,8 +10,7 @@ export const Calendar = () => {
 
    const selectedMonth = calendarStore(state => state.selectedMonth);
    const selectedYear = calendarStore(state => state.selectedYear);
-   const insertDateType = calendarStore(state => state.insertDateType);
-   const setInsertDateType = calendarStore(state => state.setInsertDateType);
+  
    const calendarDays = getCalendarDays(selectedMonth, selectedYear);
 
    return (
@@ -51,14 +50,17 @@ export const Calendar = () => {
 }
 
 const CalendarDay = ({ day, month, year, classRest, ...rest }) => {
+   const insertDateType = calendarStore(state => state.insertDateType);
    const editingPeriod = calendarStore(state => state.editingPeriod);
+
+   const { addPeriodDate } = useDateHandler();
    const { isDateInAnalyzedPeriod } = useCalendar();
    return (
       <span
          className={`h-8 leading-8 rounded-[3px] text-[14px] text-center hover:bg-gray-100 text-gray-500 cursor-pointer border border-white ${(new Date().getDate() == day && month == new Date().getMonth() + 1 && year == new Date().getFullYear()) && "text-blue-600 font-bold border-b-[3px] border-b-blue-600"}
            ${(isDateInAnalyzedPeriod(`${year}/${month}/${day}`, (editingPeriod.start), (editingPeriod.end)) && "bg-blue-100 hover:!bg-blue-300")} 
          `}
-         {...rest}
+         onClick={() => { addPeriodDate(`${year}/${month}/${day}`, insertDateType, true) }}
       >{day}</span>
    )
 }
