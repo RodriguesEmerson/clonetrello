@@ -11,7 +11,7 @@ export const cardStore = create((set) => ({
          { name: "User-1", img: "/images/profile-1.png", id: "123" },
          { name: "User-2", img: "/images/profile-2.png", id: "456" }
       ],
-      period: { start: "2025/01/11", end: "2025/01/20", done: false }
+      period: { start: "2025/01/11", end: "2025/01/20", endHour: "16:00", reminder: "Nenhum", done: false }
    },
    projetcMembers: [
       {name: "User-1", img: "/images/profile-1.png", id: "123"},

@@ -1,32 +1,29 @@
 
 
 // import Select from "../select";
+import { Select } from "../components/select";
 import ModalBox from "../boxModal";
 import { Calendar } from "./calendar/calendar";
 import { InputChangePeriod } from "./calendar/components/inputChangePeriod";
+import { ReminderSelect } from "./reminderSelect";
 
 export const DateModal = () => {
-   
    return (
       <ModalBox modalName={'Data'}>
          <Calendar />
-         {/* <p className="font-semibold text-xs mb-1 text-gray-600">Definir lembrete</p>
-         <Select 
-            option={lembrete}
-            setOptions={setLembrete}
-            optionList={selectOptions}
-            chave={'none'}
-            width={'100%'}
-         />
-
+         <p className="font-semibold text-xs mb-1 text-gray-600">Definir lembrete</p>
+         <ReminderSelect />
+         {/*
          <ButtonSaveDefault
             type={'submit'}
             value={'Salvar'}
             width={'100%'}
             handleClick={handleClickSave}
          /> */}
-
-         <InputChangePeriod title={'Data Início'} />
+         <div className="flex items-center justify-between">
+            <InputChangePeriod title={'Data Início'} type={"start"} />
+            <InputChangePeriod title={'Data Fim'} type={"end"} />
+         </div>
       </ModalBox>
    )
 }
@@ -34,13 +31,13 @@ export const DateModal = () => {
 
 function ButtonsMudarPeriod() {
    const { datesHandler } = useDateHandler();
-   const { 
-      period, startDate, endDate, setStartDate, 
+   const {
+      period, startDate, endDate, setStartDate,
       setEndDate, checkOne, checkTwo, setCheckOne,
-      setCheckTwo, dateType, setDateType 
+      setCheckTwo, dateType, setDateType
    } = useDateContext();
 
-   if(!period) return <></>
+   if (!period) return <></>
    return (
       <div className="text-xs mb-2">
          <p className="font-semibold mb-1 text-gray-600">Data Início</p>
@@ -64,9 +61,9 @@ function ButtonsMudarPeriod() {
                placeholder="dd/mm/aaaa"
                disabled={!checkOne ? true : false}
                value={startDate}
-               onClick={()=>setDateType(true)}
+               onClick={() => setDateType(true)}
                onChange={(e) => { setStartDate(e.target.value) }}
-               onKeyDown={(e) => { (e.key == "Enter") && datesHandler.handleStartDate(e.target.value, endDate, false)}}
+               onKeyDown={(e) => { (e.key == "Enter") && datesHandler.handleStartDate(e.target.value, endDate, false) }}
 
             />
          </div>
@@ -79,8 +76,8 @@ function ButtonsMudarPeriod() {
                checked={checkTwo ? true : false}
                onChange={(e) => {
                   !e.target.checked
-                  ? datesHandler.handleEndDate(endDate, startDate, true)
-                  : datesHandler.handleEndDate(datesHandler.today(), startDate, false);
+                     ? datesHandler.handleEndDate(endDate, startDate, true)
+                     : datesHandler.handleEndDate(datesHandler.today(), startDate, false);
                   setCheckTwo(!checkTwo)
                }}
             />
@@ -93,9 +90,9 @@ function ButtonsMudarPeriod() {
                placeholder="D/M/AAA"
                disabled={!checkTwo ? true : false}
                value={endDate}
-               onClick={()=>setDateType(false)}
+               onClick={() => setDateType(false)}
                onChange={(e) => { setEndDate(e.target.value) }}
-               onKeyDown={(e) =>{(e.key == "Enter") && datesHandler.handleEndDate(e.target.value, startDate, false)}}
+               onKeyDown={(e) => { (e.key == "Enter") && datesHandler.handleEndDate(e.target.value, startDate, false) }}
             />
             <input
                type="text"

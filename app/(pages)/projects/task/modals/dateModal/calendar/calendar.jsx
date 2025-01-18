@@ -10,6 +10,8 @@ export const Calendar = () => {
 
    const selectedMonth = calendarStore(state => state.selectedMonth);
    const selectedYear = calendarStore(state => state.selectedYear);
+   const insertDateType = calendarStore(state => state.insertDateType);
+   const setInsertDateType = calendarStore(state => state.setInsertDateType);
    const calendarDays = getCalendarDays(selectedMonth, selectedYear);
 
    return (

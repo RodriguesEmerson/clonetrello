@@ -3,6 +3,11 @@
 export const useCalendar = () => {
 
    const weekDays = ['Dom', 'Seg', 'Ter', 'Quar', 'Qui', 'Sex', 'Sáb'];
+   const reminderOptions = [
+      "Nenhum", "Na hora da entrega", "5 minutos antes",
+      "10 minutos antes", "15 minutos antes", "1 hora antes",
+      "2 horas antes", "1 dia antes", "2 dias antes"
+   ]
    function monthsDays(month, year) {
       const daysNumberInTheLastMonth = new Date(year, month, 0).getDate();
       const currentMont = new Date(year, month + 1, 0).getDate();
@@ -61,7 +66,9 @@ export const useCalendar = () => {
       const analyzedDay = (new Date(date).getTime());
       
       //Checa se dia está dentro do periodo analizado.
-      if (analyzedDay >= startDate && analyzedDay <= endDate) return true;
+      if(start && end){
+         if (analyzedDay >= startDate && analyzedDay <= endDate) return true;
+      }
       if (analyzedDay == startDate || analyzedDay == endDate) return true;
 
       return false;
@@ -82,5 +89,5 @@ export const useCalendar = () => {
    }
 
 
-   return { getCalendarDays, isDateInAnalyzedPeriod, weekDays, decrementMonth, incrementMonth, decrementYear, incrementYear }
+   return { getCalendarDays, isDateInAnalyzedPeriod, reminderOptions, decrementMonth, incrementMonth, decrementYear, incrementYear }
 }
