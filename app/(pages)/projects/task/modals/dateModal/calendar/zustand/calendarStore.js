@@ -17,6 +17,4 @@ export const calendarStore = create((set) => ({
    setSelectedYear: (year) => set(() => ({
       selectedYear: year
    }))
-
-
 }))

@@ -1,6 +1,9 @@
-export const SaveButton = () => {
+export const SaveButton = ({ ...props }) => {
    return (
-      <button className="w-40 h-8 bg-blue-500 text-white font-semibold rounded-md ">
+      <button
+         className="w-full h-8 bg-blue-600 hover:bg-blue-700 transition-all text-white font-semibold rounded-sm text-sm "
+         {...props}
+      >
          Salvar
       </button>
    )

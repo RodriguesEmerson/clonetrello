@@ -2,14 +2,9 @@ import { useEffect, useState } from "react";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { calendarStore } from "../dateModal/calendar/zustand/calendarStore";
 
-export const Select = ({ optionList, option, width, ...rest }) => {
+export const Select = ({ optionList, option, width, action }) => {
    const [showOptions, setShowOptions] = useState(false);
    const [currentOption, setCurrentOption] = useState(option);
-   const editingPeriod = calendarStore(state => state.editingPeriod);
-
-   useEffect(() => {
-      setCurrentOption(editingPeriod?.reminder);
-   }, [editingPeriod]);
 
    if(!currentOption) return <></>
 
@@ -24,7 +19,6 @@ export const Select = ({ optionList, option, width, ...rest }) => {
             className="cursor-default w-full h-full bg-transparent border-none focus:outline-none"
             readOnly
             value={currentOption}
-            onChange={() => {}}  
          />
          {/* {showOptions && */}
          <ul className={`${showOptions ? `h-[${32 + (32 * optionList.length)}px]` : "h-0 !p-0 !border-none"} overflow-hidden transition-all border text-[13px] border-gray-200 py-2 -ml-2 absolute rounded-md bg-white bottom-9 w-full shadow-md`}>
@@ -39,9 +33,8 @@ export const Select = ({ optionList, option, width, ...rest }) => {
                   )) 
                */}
             {optionList.map(item => (
-               <li key={`ilM${item}`} className="option-modal-data relative h-8 leading-7 pl-2 cursor-pointer hover:bg-gray-100 "
-                  {...rest}
-                  onClick={() => { setCurrentOption(item) }}
+               <li key={`ilM${item}`} className="option-modal-data relative h-8 leading-8 pl-2 cursor-pointer hover:bg-gray-100 "
+                  onClick={() => { setCurrentOption(item); action(item) }}
                >
                   <span className={`w-[3px] h-full transition-all ${currentOption == item ? "block" : "hidden"} bg-blue-500 absolute left-0 top-0 -m-[1px]`}></span>
                   <p>{item}</p>

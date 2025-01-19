@@ -1,7 +1,7 @@
 
 import { useCalendar } from "../../hooks/useCalendar";
 import { useDateHandler } from "../../hooks/useDateHandler";
-import { ButtonsChangeMonth } from "./components/buttonsChangeMonth";
+import { ChangeMonthButtons } from "./components/changeMonthButtons";
 import { WeekDaysTitle } from "./components/weekDaysTitle";
 import { calendarStore } from "./zustand/calendarStore";
 
@@ -14,8 +14,8 @@ export const Calendar = () => {
    const calendarDays = getCalendarDays(selectedMonth, selectedYear);
 
    return (
-      <div>
-         <ButtonsChangeMonth />
+      <div className="border-b-gray-200 border-b rounded-md">
+         <ChangeMonthButtons />
          <div className="grid grid-cols-7 mb-2 text-gray-600">
             <WeekDaysTitle />
             {calendarDays?.previousMonthLastDays.map(day => (

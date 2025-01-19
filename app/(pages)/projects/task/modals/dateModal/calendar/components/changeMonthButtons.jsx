@@ -3,7 +3,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useCalendar } from "../../../hooks/useCalendar";
 
-export const ButtonsChangeMonth = () => {
+export const ChangeMonthButtons = () => {
    const selectedMonth = calendarStore(state => state.selectedMonth);
    const selectedYear = calendarStore(state => state.selectedYear);
    const setSelectedMonth = calendarStore(state => state.setSelectedMonth);

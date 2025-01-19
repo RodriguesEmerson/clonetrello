@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { calendarStore } from '../zustand/calendarStore';
 import { useDateHandler } from '../../../hooks/useDateHandler';
 
-export const InputChangePeriod = ({ title, type, ...rest }) => {
+export const ChangePeriodInput = ({ title, type, ...rest }) => {
    const [checked, setChecked] = useState(false);
    const [inputValue, setInputValue] = useState('');
    const editingPeriod = calendarStore(state => state.editingPeriod);
