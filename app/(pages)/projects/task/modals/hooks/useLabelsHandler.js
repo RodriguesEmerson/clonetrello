@@ -1,16 +1,16 @@
-import { cardStore } from "../../zustand/cardStore";
+import { editingCardStore } from "../../zustand/editingCardStore";
 
 export const useLabelsHandler = () => {
-   const card = cardStore(state => state.card);
-   const setCardChanges = cardStore(state => state.setCardChanges);
+   const editingCard = editingCardStore(state => state.editingCard);
+   const setCardChanges = editingCardStore(state => state.setCardChanges);
 
    function labelsHandler(label){
-      if(card.labels.includes(label)){
-         const labels = card.labels.filter((currLabel) => currLabel != label);
+      if(editingCard.labels.includes(label)){
+         const labels = editingCard.labels.filter((currLabel) => currLabel != label);
          setCardChanges("labels", labels)
          return;
       }
-      setCardChanges("labels", [...card.labels, label])
+      setCardChanges("labels", [...editingCard.labels, label])
    }
 
    return { labelsHandler }

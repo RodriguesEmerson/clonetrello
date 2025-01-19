@@ -1,11 +1,11 @@
+import { editingCardStore } from "../../zustand/editingCardStore";
 import ModalBox from "../boxModal";
-import { Style } from "./style";
 import { Colors } from "./colors";
 import { Images } from "./images";
-import { cardStore } from "../../zustand/cardStore";
+import { Style } from "./style";
 
 export function CoverModal() {
-   const setCardChanges = cardStore(state => state.setCardChanges);
+   const setCardChanges = editingCardStore(state => state.setCardChanges);
 
    return (
       <ModalBox modalName={'Capa'}>

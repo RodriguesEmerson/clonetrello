@@ -1,4 +1,4 @@
-import { cardStore } from "../../zustand/cardStore";
+import { editingCardStore } from "../../zustand/editingCardStore";
 
 const availableColors = [
    { color: '#FFC636' },
@@ -14,10 +14,10 @@ const availableColors = [
 ]
 
 export const Colors = () => {
-   const card = cardStore(state => state.card);
-   const setCardChanges = cardStore(state => state.setCardChanges);
+   const editingCard = editingCardStore(state => state.editingCard);
+   const setCardChanges = editingCardStore(state => state.setCardChanges);
    
-   if(!card) return <></>;
+   if(!editingCard) return <></>;
 
    return (
       <div className="text-xs mb-2">
@@ -26,8 +26,8 @@ export const Colors = () => {
             {availableColors.map(color => (
                <div key={`capa${color.color}`}
                   className={`h-9 w-[18%] rounded-[3px] cursor-pointer p-[1px]
-                  ${card.cover?.color == color.color && "outline outline-[3px] outline-blue-500"}`}
-                  onClick={() => setCardChanges("cover",{ color: `${color.color}`, full: card.cover.full, img: "" })}
+                  ${editingCard.cover?.color == color.color && "outline outline-[3px] outline-blue-500"}`}
+                  onClick={() => setCardChanges("cover",{ color: `${color.color}`, full: editingCard.cover.full, img: "" })}
                >
                   <span className={`h-full w-full block rounded-[3px]`}
                      style={{ backgroundColor: color.color }}

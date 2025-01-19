@@ -1,4 +1,4 @@
-import { cardStore } from "../../zustand/cardStore";
+import { editingCardStore } from "../../zustand/editingCardStore";
 
 const availablesImages = [
    "/images/bg-img-1.jpg", "/images/bg-img-2.jpg", "/images/bg-img-3.jpg",
@@ -7,7 +7,7 @@ const availablesImages = [
 ]
 
 export const Images = () => {
-   const setCardChanges = cardStore(state => state.setCardChanges);
+   const setCardChanges = editingCardStore(state => state.setCardChanges);
 
    return (
       <div className="text-xs mb-2">

@@ -1,17 +1,15 @@
-import { useState } from "react";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import { cardStore } from "../zustand/cardStore";
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import { useEffect, useState } from "react";
+import { cardStore } from "../zustand/editingCardStore";
 import { useCardHandler } from "./hooks/useCardHandler";
 
-export const Period = ({ period }) => {
-   if (!period.start && !period.end) return <></>;
-
-   const startDate = new Date(period.start).toLocaleDateString('pt-br', { day: '2-digit', month: 'short' });
-   const endDate = new Date(period.end).toLocaleDateString('pt-br', { day: '2-digit', month: 'short' });
-   const card = cardStore(state => state.card);
-   const setCardChanges = cardStore(state => state.setCardChanges);
+export const Period = ({ card, ...rest }) => {
+   if (!card.period.start && !card.period.end) return <></>;
+   const [period, setPeriod] = useState(card.period);
+   const startDate = new Date(card.period.start).toLocaleDateString('pt-br', { day: '2-digit', month: 'short' });
+   const endDate = new Date(card.period.end).toLocaleDateString('pt-br', { day: '2-digit', month: 'short' });
    const { getPeriodColor } = useCardHandler();
 
    const [hovering, setHovering] = useState(false);
@@ -22,13 +20,17 @@ export const Period = ({ period }) => {
       }
    }
 
+   useEffect(() => { 
+      setPeriod(card.period);
+   }, [card.period]);   
+
    return (
       <div
          className={`h-6 flex flex-row items-center gap-1 p-1 rounded-[3px] ${period.done && "text-green-100 bg-green-700"}`}
-         style={{ backgroundColor: getPeriodColor(period) }}
+         style={{ backgroundColor: getPeriodColor(period), color: getPeriodColor(period) ? "rgba(255, 255, 255, 0.8" : "gray" }}
          onMouseEnter={(e) => setHovering(true)}
          onMouseOut={(e) => handleMouseOut(e)}
-         onClick={(e)=> {setCardChanges("period", { ...card.period, done: !card.period.done })}}
+         onClick={(e)=> {setPeriod({...period, done: !period.done }); card.period.done = !period.done;}}
       >
          {!hovering &&
             <AccessTimeIcon className="text-base" />

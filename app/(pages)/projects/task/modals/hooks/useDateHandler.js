@@ -1,6 +1,6 @@
 'use client'
 
-import { cardStore } from "../../zustand/cardStore";
+import { editingCardStore } from "../../zustand/editingCardStore";
 import { calendarStore } from "../dateModal/calendar/zustand/calendarStore";
 
 export const useDateHandler = () => {
@@ -9,8 +9,7 @@ export const useDateHandler = () => {
    const setEditingPeriod = calendarStore(state => state.setEditingPeriod);
    const insertDateType = calendarStore(state => state.insertDateType);
    const setInsertDateType = calendarStore(state => state.setInsertDateType);
-   const card = cardStore(state => state.card);
-   const setCardChanges = cardStore(state => state.setCardChanges);
+   const setCardChanges = editingCardStore(state => state.setCardChanges);
 
    function convertDateToOnMothLess(date) {
       const dateArray = date.split('/');
@@ -63,10 +62,6 @@ export const useDateHandler = () => {
    function addReminder(reminder) {
       setEditingPeriod({ ...editingPeriod, reminder: reminder })
    }
-   
-   function savePeriod() {
-      setCardChanges('period', editingPeriod);
-   }
 
    function isValidDate(date) {
       const dateArray = date.split('/');
@@ -96,6 +91,10 @@ export const useDateHandler = () => {
 
    function isGreaterThan(date, endDate){
       if(new Date(date).getTime() > new Date(endDate).getTime()) return true;
+   }
+      
+   function savePeriod() {
+      setCardChanges('period', editingPeriod);
    }
 
    return {

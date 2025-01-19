@@ -1,0 +1,95 @@
+{ 
+   "projects":[
+      {
+      "id": "123",
+      "title": "Projeto 1",
+      "description": "Descrição do projeto 1.",
+      "members": [
+         { "name": "User-1", "img": "/images/profile-1.png", "id": "123" },
+         { "name": "User-2", "img": "/images/profile-2.png", "id": "456" }
+      ],
+      "created": "2025/01/10",
+      "lists":[
+         {
+            "id": "123",
+            "created": "2025/01/10",
+            "title": "Lista 1",
+            "cards":[
+               {
+                  "id": "124",
+                  "key": "322",
+                  "cover": { "full": false, "color": "#FF5733", "img": false },
+                  "content": "Texto do card 1!",
+                  "coments": "Comentário adicional.",
+                  "labels": ["#FF5733", "#3498DB"],
+                  "members": [
+                     { "name": "User-3", "img": "/images/profile-3.png", "id": "789" },
+                     { "name": "User-4", "img": "/images/profile-4.png", "id": "101" }
+                  ],
+                  "period": { "start": "2025/01/12", "end": "2025/01/21", "endHour": "14:00", "reminder": "1 hora antes", "done": false }
+               },
+               {
+                  "id": "125",
+                  "key": "323",
+                  "cover": { "full": false, "color": "#04D99D", "img": false },
+                  "content": "Texto do card 2!",
+                  "coments": "Outro comentário.",
+                  "labels": ["#FFC636", "#04D99D"],
+                  "members": [
+                     { "name": "User-5", "img": "/images/profile-5.png", "id": "102" },
+                     { "name": "User-6", "img": "/images/profile-6.png", "id": "103" }
+                  ],
+                  "period": { "start": "2025/01/13", "end": "2025/01/22", "endHour": "12:00", "reminder": "2 horas antes", "done": true }
+               }
+            ]
+         },
+         {
+            "id": "129",
+            "created": "2025/01/10",
+            "title": "Lista 2",
+            "cards":[
+               {
+                  "id": "126",
+                  "key": "324",
+                  "cover": { "full": false, "color": "#FFC636", "img": false },
+                  "content": "Texto do card 3!",
+                  "coments": "",
+                  "labels": ["#FF5733", "#04D99D"],
+                  "members": [
+                     { "name": "User-7", "img": "/images/profile-7.png", "id": "104" },
+                     { "name": "User-8", "img": "/images/profile-8.png", "id": "105" }
+                  ],
+                  "period": { "start": "2025/01/14", "end": "2025/01/23", "endHour": "10:00", "reminder": "30 minutos antes", "done": false }
+               },
+               {
+                  "id": "127",
+                  "key": "325",
+                  "cover": { "full": false, "color": "#3498DB", "img": false },
+                  "content": "Texto do card 4!",
+                  "coments": "Observação aqui.",
+                  "labels": ["#FFC636", "#3498DB"],
+                  "members": [
+                     { "name": "User-9", "img": "/images/profile-9.png", "id": "106" },
+                     { "name": "User-10", "img": "/images/profile-10.png", "id": "107" }
+                  ],
+                  "period": { "start": "2025/01/15", "end": "2025/01/24", "endHour": "18:00", "reminder": "Nenhum", "done": true }
+               },
+               {
+                  "id": "128",
+                  "key": "326",
+                  "cover": { "full": false, "color": "#04D99D", "img": false },
+                  "content": "Texto do card 5!",
+                  "coments": "Último comentário.",
+                  "labels": ["#FFC636", "#FF5733"],
+                  "members": [
+                     { "name": "User-11", "img": "/images/profile-11.png", "id": "108" },
+                     { "name": "User-12", "img": "/images/profile-12.png", "id": "109" }
+                  ],
+                  "period": { "start": "2025/01/16", "end": "2025/01/25", "endHour": "09:00", "reminder": "1 dia antes", "done": false }
+               }
+            ]
+         }
+      ]
+   }
+   ]
+}

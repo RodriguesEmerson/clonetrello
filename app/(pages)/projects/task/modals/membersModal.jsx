@@ -1,16 +1,16 @@
 'use client';
 
-import ModalBox from "./boxModal";
-import { cardStore } from "../zustand/cardStore";
-import { useMembersHandler } from "./hooks/useMembersHandler";
-import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import { editingCardStore } from "../zustand/editingCardStore";
+import ModalBox from "./boxModal";
+import { useMembersHandler } from "./hooks/useMembersHandler";
 
 export const MembersModal = () => {
-   const card = cardStore(state => state.card);
+   const editingCard = editingCardStore(state => state.editingCard);
    const { removeMember, addMember, findOutMembers } = useMembersHandler();
    
-   const cardMembers = card.members;
+   const cardMembers = editingCard.members;
    const outMembers = findOutMembers();
 
    return (

@@ -1,12 +1,12 @@
-import { cardStore } from "../../zustand/cardStore";
+import { editingCardStore } from "../../zustand/editingCardStore";
 
 
 export const Style = () => {
-   const card = cardStore(state => state.card);
-   const setCardChanges = cardStore(state => state.setCardChanges);
-   const cover = card.cover;
+   const editingCard = editingCardStore(state => state.editingCard);
+   const setCardChanges = editingCardStore(state => state.setCardChanges);
+   const cover = editingCard.cover;
 
-   if (!card) return <></>;
+   if (!editingCard) return <></>;
 
    return (
       <div className="text-xs">
